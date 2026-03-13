@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        const res = await fetch("http://localhost:8000/health");
+        const res = await fetch("https://deepfake-detection-of-images-and-videos.onrender.com/health");
         const data = await res.json();
         if (data.status === "online") setAgentOnline(true);
       } catch {
@@ -61,7 +61,7 @@ function App() {
     }, 1500);
 
     try {
-      const response = await fetch("http://localhost:8000/analyze-image", {
+      const response = await fetch("https://deepfake-detection-of-images-and-videos.onrender.com/analyze-image", {
         method: "POST",
         body: formData,
       });
