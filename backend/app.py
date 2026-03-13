@@ -6,6 +6,8 @@ import os
 
 from agent import DeepfakeAgent
 from metrics import calculate_metrics
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI(
     title="DeepVisionAgent API",

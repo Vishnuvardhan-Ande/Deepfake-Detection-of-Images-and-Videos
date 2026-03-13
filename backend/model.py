@@ -1,30 +1,32 @@
-import torch
-from transformers import AutoImageProcessor, AutoModelForImageClassification
-from PIL import Image
+import os
+import requests
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# Get token from environment variable
+HF_TOKEN = os.getenv("HF_TOKEN")
 
-# Pretrained deepfake model
-model_name = "prithivMLmods/Deep-Fake-Detector-Model"
+API_URL = "https://api-inference.huggingface.co/models/prithivMLmods/Deepfake-Detector-Model"
 
-processor = AutoImageProcessor.from_pretrained(model_name)
-model = AutoModelForImageClassification.from_pretrained(model_name)
-
-model.to(device)
-model.eval()
-
+headers = {
+    "Authorization": f"Bearer {HF_TOKEN}"
+}
 
 def predict_image(image_path):
-    image = Image.open(image_path).convert("RGB")
+    
+    with open(image_path, "rb") as f:
+        data = f.read()
 
-    inputs = processor(images=image, return_tensors="pt").to(device)
+    response = requests.post(API_URL, headers=headers, data=data)
 
-    with torch.no_grad():
-        outputs = model(**inputs)
-        probs = torch.softmax(outputs.logits, dim=1)
+    if response.status_code != 200:
+        return "Error", 0.0
 
-    confidence, predicted = torch.max(probs, 1)
+    result = response.json()
 
-    label = model.config.id2label[predicted.item()]
+    if isinstance(result, list) and len(result) > 0:
+        prediction = result[0]["label"]
+        confidence = result[0]["score"]
+    else:
+        prediction = "Unknown"
+        confidence = 0.0
 
-    return label, float(confidence.item())
+    return prediction, confidence

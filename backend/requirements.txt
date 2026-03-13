@@ -6,4 +6,5 @@ opencv-python
 pillow
 numpy
 python-multipart
-tranformers
+requests
+python-dotenv
