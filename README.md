@@ -1,95 +1,171 @@
-📌 Overview
 
-This project detects deepfake images and videos using deep learning models and provides a user-friendly React interface.
+# 🧠 Deepfake Detection (Images & Videos)
 
-The backend is powered by FastAPI, enabling fast and efficient communication between the frontend and the machine learning model.
+## 📌 Overview
 
-Users can upload media files and instantly get predictions indicating whether the content is Real or Fake, along with confidence scores.
+This project detects **deepfake images and videos** using deep learning models and provides a clean, interactive UI.
 
-🚀 Features
-🔍 Deepfake detection for images
-🎥 Deepfake detection for videos
-⚡ High-performance FastAPI backend
-🌐 Interactive React frontend UI
-🧠 CNN-based deep learning model
-📊 Confidence score output
-🔗 REST API integration
-🛠️ Tech Stack
-🔹 Frontend
-React.js
-HTML, CSS, JavaScript
-🔹 Backend
-FastAPI
-Uvicorn
-🔹 Machine Learning
-Python
-TensorFlow / PyTorch
-OpenCV
-NumPy, Pandas, Scikit-learn
-📂 Project Structure
+* ⚡ Backend powered by **FastAPI**
+* 🌐 Frontend built with **React**
+* 🧠 Uses CNN-based models for prediction
+
+Users can upload media and instantly receive:
+
+* ✅ Real / Fake classification
+* 📊 Confidence score
+
+---
+
+## 🚀 Features
+
+* 🔍 Deepfake detection for images
+* 🎥 Deepfake detection for videos
+* ⚡ High-performance FastAPI backend
+* 🌐 Interactive React UI
+* 🧠 CNN-based deep learning model
+* 📊 Confidence score output
+* 🔗 REST API integration
+
+---
+
+## 🛠️ Tech Stack
+
+### 🔹 Frontend
+
+* React.js
+* HTML, CSS, JavaScript
+
+### 🔹 Backend
+
+* FastAPI
+* Uvicorn
+
+### 🔹 Machine Learning
+
+* Python
+* TensorFlow / PyTorch
+* OpenCV
+* NumPy, Pandas, Scikit-learn
+
+---
+
+## 📂 Project Structure
+
+```bash
 Deepfake-Detection/
 │
-├── frontend/              # React application
-│   ├── deepfake-ui/
+├── frontend/                  # React App
+│   └── deepfake-ui/
 │       └── src/
 │
-├── backend/               # FastAPI server
+├── backend/                   # FastAPI Server
 │   ├── app.py
-│   ├── metrics.py
-|   ├── requirements.txt  
 │   ├── model.py
-|   ├── render.yml
 │   ├── train.py
-│   ├── utils.py
 │   ├── video.py
-│   └── agent.py
-│                  
-└── README.md              
-⚙️ Installation
-1️⃣ Clone Repository
+│   ├── utils.py
+│   ├── metrics.py
+│   ├── agent.py
+│   ├── requirements.txt
+│   └── render.yml
+│
+└── README.md
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/Vishnuvardhan-Ande/Deepfake-Detection-of-Images-and-Videos.git
-cd deepfake-detection
-2️⃣ Setup Backend (FastAPI)
+cd Deepfake-Detection-of-Images-and-Videos
+```
+
+---
+
+### 2️⃣ Backend Setup (FastAPI)
+
+```bash
 cd backend
 
 # Create virtual environment
 python -m venv venv
+```
 
-# Activate
+**Activate Environment**
+
+```bash
 # Windows
 venv\Scripts\activate
+
 # Linux/Mac
 source venv/bin/activate
+```
 
-# Install dependencies
-pip install -r ../requirements.txt
+**Install Dependencies**
 
-# Run server
-uvicorn main:app --reload
+```bash
+pip install -r requirements.txt
+```
 
-📍 Backend runs on: http://127.0.0.1:8000
-📍 API Docs (Swagger): http://127.0.0.1:8000/docs
+**Run Server**
 
-3️⃣ Setup Frontend (React)
-cd frontend
+```bash
+uvicorn app:app --reload
+```
+
+📍 Backend: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+📍 API Docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
+---
+
+### 3️⃣ Frontend Setup (React)
+
+```bash
+cd frontend/deepfake-ui
+
 npm install
 npm start
+```
 
-📍 Frontend runs on: http://localhost:3000
+📍 Frontend: [http://localhost:3000](http://localhost:3000)
 
-▶️ Usage
-Start FastAPI backend
-Start React frontend
-Upload an image or video
-Backend processes file using ML model
-Get result: Real / Fake + Confidence Score
-🔗 API Endpoints
-📤 Upload Image
+---
+
+## ▶️ Usage
+
+1. Start the FastAPI backend
+2. Start the React frontend
+3. Upload an image or video
+4. Model processes the file
+5. Get result: **Real / Fake + Confidence Score**
+
+---
+
+## 🔗 API Endpoints
+
+### 📤 Predict Image
+
+```
 POST /predict/image
-📤 Upload Video
+```
+
+### 📤 Predict Video
+
+```
 POST /predict/video
-📥 Response Example
+```
+
+### 📥 Response Example
+
+```json
 {
   "prediction": "Fake",
   "confidence": 0.92
 }
+```
+
+---
+
